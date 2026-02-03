@@ -160,6 +160,14 @@ li button {
   color: #fff;
 }
 
+.btn-disabled {
+  background-color: #b4b3b3;
+  border: none;
+  border-radius: 5px;
+  transition-duration: 0.2s;
+  padding: 4px 8px;
+}
+
 .blacklist-title {
   color: #4a4a4a;
   margin-top: 1rem;

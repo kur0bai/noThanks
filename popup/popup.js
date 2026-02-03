@@ -5,6 +5,7 @@ const formEl = document.getElementById("add-form");
 const refreshBtn = document.getElementById("refresh");
 const toggleEl = document.getElementById("enabled-toggle");
 const disableToggleEl = document.getElementById("disabled-toggle");
+const applyBtn = document.getElementById("refresh");
 
 chrome.storage.local.get(["enabled"], ({ enabled = true }) => {
   toggleButtonStyle(enabled);
@@ -104,11 +105,17 @@ function toggleButtonStyle(state) {
     toggleEl.classList.remove("neutral");
     disableToggleEl.classList.add("neutral");
     disableToggleEl.classList.remove("disabled");
+    applyBtn.disabled = false;
+    applyBtn.classList.remove("btn-disabled");
+    applyBtn.classList.add("btn-apply");
   } else {
     toggleEl.classList.add("neutral");
     toggleEl.classList.remove("enabled");
     disableToggleEl.classList.add("disabled");
     disableToggleEl.classList.remove("enabled");
+    applyBtn.disabled = true;
+    applyBtn.classList.add("btn-disabled");
+    applyBtn.classList.remove("btn-apply");
   }
 }
 
