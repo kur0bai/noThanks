@@ -8,27 +8,34 @@
 </head>
 
 <body>
+    <div class="header">
     <!-- Logo :) -->
     <h1><span id="title-no">no</span><span id="title-thanks">Thanks</span></h1>
 
-    <div class></div>
+    <!-- Toggle -->
+    <div class="container-btn">
+        <button id="enabled-toggle" class="btn-toggle">
+        </button>
+        <button id="disabled-toggle" class="btn-toggle">
+        </button>
+    </div>
 
-    <label class="toggle">
-        <input type="checkbox" id="enabled-toggle">
-        <span>Filtro activo</span>
-    </label>
-
+    </div>
 
     <form id="add-form">
-        <input type="text" id="company-input" placeholder="Nombre de la empresa" autocomplete="off" required />
-        <button type="submit">Agregar</button>
+        <input class="input" type="text" id="company-input" placeholder="Company Name" autocomplete="off" required />
+        <button class="btn-save" type="submit">⛁ Save</button>
     </form>
 
-    <ul id="blacklist"></ul>
+    <div class="blacklist-title">
+        <h3>Blacklist</h3>
+        <ul id="blacklist"></ul>
+    </div>
+   
 
     <div class="footer">
-        <span id="count">0 empresas</span>
-        <button id="refresh">Reaplicar</button>
+        <span id="count">0 companies</span>
+        <button class="btn-apply" id="refresh">✓ Apply</button>
     </div>
 
     <script src="popup.js"></script>

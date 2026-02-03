@@ -4,9 +4,10 @@ const inputEl = document.getElementById("company-input");
 const formEl = document.getElementById("add-form");
 const refreshBtn = document.getElementById("refresh");
 const toggleEl = document.getElementById("enabled-toggle");
+const disableToggleEl = document.getElementById("disabled-toggle");
 
 chrome.storage.local.get(["enabled"], ({ enabled = true }) => {
-  toggleEl.checked = enabled;
+  toggleButtonStyle(enabled);
 });
 
 /**
@@ -30,7 +31,7 @@ function normalize(text) {
  */
 function render(list) {
   listEl.innerHTML = "";
-  countEl.textContent = `${list.length} empresas`;
+  countEl.textContent = `${list.length} companies`;
 
   list.forEach((company, index) => {
     const li = document.createElement("li");
@@ -93,17 +94,50 @@ refreshBtn.addEventListener("click", () => {
   });
 });
 
-toggleEl.addEventListener("change", () => {
-  const enabled = toggleEl.checked;
+/**
+ * Toggle style for the button
+ * @param {*} state
+ */
+function toggleButtonStyle(state) {
+  if (state) {
+    toggleEl.classList.add("enabled");
+    toggleEl.classList.remove("neutral");
+    disableToggleEl.classList.add("neutral");
+    disableToggleEl.classList.remove("disabled");
+  } else {
+    toggleEl.classList.add("neutral");
+    toggleEl.classList.remove("enabled");
+    disableToggleEl.classList.add("disabled");
+    disableToggleEl.classList.remove("enabled");
+  }
+}
 
-  chrome.storage.local.set({ enabled });
+function toggleButtonState() {
+  chrome.storage.local.get(["enabled"], ({ enabled = true }) => {
+    const newState = !enabled;
+    //Save new state
+    chrome.storage.local.set({ enabled: newState });
 
-  chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
-    chrome.tabs.sendMessage(tabs[0].id, {
-      type: "TOGGLE",
-      enabled,
+    //Toggle style part
+    toggleButtonStyle(newState);
+
+    chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
+      chrome.tabs.sendMessage(tabs[0].id, {
+        type: "TOGGLE",
+        enabled: newState,
+      });
     });
   });
+}
+
+/**
+ * Event listener for toggle buttons
+ */
+toggleEl.addEventListener("click", () => {
+  toggleButtonState();
+});
+disableToggleEl.addEventListener("click", () => {
+  toggleButtonState();
 });
 
 load();
