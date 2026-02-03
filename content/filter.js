@@ -101,10 +101,6 @@ function startObserver(rules) {
 
   const rules = SITE_RULES[siteKey];
 
-  /* chrome.storage.local.get(["blacklist"], ({ blacklist = [] }) => {
-    applyFilter(rules, blacklist);
-    startObserver(rules);
-  }); */
   chrome.storage.local.get(
     ["blacklist", "enabled"],
     ({ blacklist = [], enabled = true }) => {
