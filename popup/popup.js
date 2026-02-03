@@ -3,6 +3,11 @@ const countEl = document.getElementById("count");
 const inputEl = document.getElementById("company-input");
 const formEl = document.getElementById("add-form");
 const refreshBtn = document.getElementById("refresh");
+const toggleEl = document.getElementById("enabled-toggle");
+
+chrome.storage.local.get(["enabled"], ({ enabled = true }) => {
+  toggleEl.checked = enabled;
+});
 
 /**
  * Helpers
@@ -85,6 +90,19 @@ formEl.addEventListener("submit", (e) => {
 refreshBtn.addEventListener("click", () => {
   chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
     chrome.tabs.reload(tabs[0].id);
+  });
+});
+
+toggleEl.addEventListener("change", () => {
+  const enabled = toggleEl.checked;
+
+  chrome.storage.local.set({ enabled });
+
+  chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
+    chrome.tabs.sendMessage(tabs[0].id, {
+      type: "TOGGLE",
+      enabled,
+    });
   });
 });
 
