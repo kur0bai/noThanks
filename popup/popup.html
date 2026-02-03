@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Job Blacklist</title>
+    <link rel="stylesheet" href="popup.css" />
+</head>
+
+<body>
+    <h1>Blacklist</h1>
+
+    <form id="add-form">
+        <input type="text" id="company-input" placeholder="Nombre de la empresa" autocomplete="off" required />
+        <button type="submit">Agregar</button>
+    </form>
+
+    <ul id="blacklist"></ul>
+
+    <div class="footer">
+        <span id="count">0 empresas</span>
+        <button id="refresh">Reaplicar</button>
+    </div>
+
+    <script src="popup.js"></script>
+</body>
+
+</html>

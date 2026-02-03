@@ -1,0 +1,53 @@
+body {
+  font-family: system-ui, sans-serif;
+  min-width: 280px;
+  padding: 10px;
+}
+
+h1 {
+  font-size: 16px;
+  margin-bottom: 8px;
+}
+
+form {
+  display: flex;
+  gap: 5px;
+}
+
+input {
+  flex: 1;
+  padding: 4px;
+}
+
+button {
+  cursor: pointer;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 10px 0;
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+li {
+  display: flex;
+  justify-content: space-between;
+  padding: 4px 0;
+  border-bottom: 1px solid #eee;
+}
+
+li button {
+  background: none;
+  border: none;
+  color: red;
+  font-weight: bold;
+}
+
+.footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 12px;
+}
