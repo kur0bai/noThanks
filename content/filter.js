@@ -72,9 +72,13 @@ function applyFilter(rules, blacklist) {
  */
 function startObserver(rules) {
   const observer = new MutationObserver(() => {
-    chrome.storage.local.get(["blacklist"], ({ blacklist = [] }) => {
-      applyFilter(rules, blacklist);
-    });
+    chrome.storage.local.get(
+      ["blacklist", "enabled"],
+      ({ blacklist = [], enabled = true }) => {
+        if (!enabled) return;
+        applyFilter(rules, blacklist);
+      },
+    );
   });
 
   observer.observe(document.body, {
@@ -97,8 +101,26 @@ function startObserver(rules) {
 
   const rules = SITE_RULES[siteKey];
 
-  chrome.storage.local.get(["blacklist"], ({ blacklist = [] }) => {
+  /* chrome.storage.local.get(["blacklist"], ({ blacklist = [] }) => {
     applyFilter(rules, blacklist);
     startObserver(rules);
-  });
+  }); */
+  chrome.storage.local.get(
+    ["blacklist", "enabled"],
+    ({ blacklist = [], enabled = true }) => {
+      if (!enabled) return;
+      applyFilter(rules, blacklist);
+      startObserver(rules);
+    },
+  );
 })();
+
+chrome.runtime.onMessage.addListener((msg) => {
+  if (msg.type === "TOGGLE") {
+    if (msg.enabled) {
+      chrome.storage.local.get(["blacklist"], ({ blacklist = [] }) => {
+        applyFilter(rules, blacklist);
+      });
+    }
+  }
+});

@@ -7,8 +7,14 @@ body {
 h1 {
   font-size: 16px;
   margin-bottom: 8px;
+  font-family: "Montserrat", "Open Sans", sans-serif;
 }
-
+#title-no {
+  color: #2d2d2d;
+}
+#title-thanks {
+  color: #2f21c6;
+}
 form {
   display: flex;
   gap: 5px;
@@ -50,4 +56,11 @@ li button {
   justify-content: space-between;
   align-items: center;
   font-size: 12px;
+}
+
+.toggle {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 10px;
 }

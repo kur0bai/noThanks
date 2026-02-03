@@ -7,9 +7,12 @@
   "content_scripts": [
     {
       "matches": [
-        "*://*.linkedin.com/jobs/*",
+        "*://www.linkedin.com/jobs/*",
         "*://*.indeed.com/*",
-        "*://*.glassdoor.*/*"
+        "*://www.computrabajo.com/*",
+        "*://ar.computrabajo.com/*",
+        "*://mx.computrabajo.com/*",
+        "*://co.computrabajo.com/*"
       ],
       "js": ["content/filter.js"]
     }
