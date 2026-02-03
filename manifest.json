@@ -1,0 +1,20 @@
+{
+  "manifest_version": 3,
+  "name": "noThanks",
+  "version": "1.0",
+  "description": "Filter job offers by company | Filtra ofertas de empleo por empresa",
+  "permissions": ["storage", "tabs"],
+  "content_scripts": [
+    {
+      "matches": [
+        "*://*.linkedin.com/jobs/*",
+        "*://*.indeed.com/*",
+        "*://*.glassdoor.*/*"
+      ],
+      "js": ["content/filter.js"]
+    }
+  ],
+  "action": {
+    "default_popup": "popup/popup.html"
+  }
+}
