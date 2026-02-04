@@ -26,7 +26,7 @@
 Browser extension that lets you **hide job offers from unwanted companies** on job search portals such as **LinkedIn, Indeed, and Computrabajo**.
 Designed for people who want to clean up their search results, avoid repeated companies, recruitment agencies, or companies they’ve had bad experiences with before.
 
-<div align="center"><img src="https://i.imgur.com/Ny8jHCD.png" width="300" align="center"></div>
+<div align="center"><img src="https://i.imgur.com/jeeSad9.png" width="300" align="center"></div>
 
 ### Features
 
@@ -88,7 +88,7 @@ Extensión de navegador que permite **ocultar ofertas de empleo de empresas no d
 
 Pensada para personas que quieren **limpiar resultados**, evitar empresas repetidas, consultoras o compañías con malas experiencias previas.
 
-<div align="center"><img src="https://i.imgur.com/Ny8jHCD.png" width="300" align="center"></div>
+<div align="center"><img src="https://i.imgur.com/jeeSad9.png" width="300" align="center"></div>
 
 ### Funcionalidades
 
