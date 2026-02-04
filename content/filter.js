@@ -9,8 +9,8 @@
  */
 const SITE_RULES = {
   "linkedin.com": {
-    jobCard: "li.jobs-search-results__list-item",
-    company: "span.job-card-container__company-name",
+    jobCard: "div.job-card-container[data-job-id]",
+    company: ".artdeco-entity-lockup__subtitle span",
   },
   "indeed.com": {
     jobCard: "div.job_seen_beacon",
@@ -61,7 +61,7 @@ function applyFilter(rules, blacklist) {
     const companyName = companyEl.innerText || "";
 
     if (isBlacklisted(companyName, blacklist)) {
-      card.style.display = "none";
+      card.remove();
       card.dataset.jobFiltered = "true";
     }
   });

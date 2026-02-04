@@ -7,8 +7,9 @@
   "content_scripts": [
     {
       "matches": [
-        "*://www.linkedin.com/jobs/*",
+        "*://*.linkedin.com/*",
         "*://*.indeed.com/*",
+        "*://co.indeed.com/*",
         "*://www.computrabajo.com/*",
         "*://ar.computrabajo.com/*",
         "*://mx.computrabajo.com/*",
