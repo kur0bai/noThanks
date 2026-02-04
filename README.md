@@ -33,9 +33,14 @@ Designed for people who want to clean up their search results, avoid repeated co
 - Custom company blacklist
 - Automatic job offer filtering
 - Supports:
-  - LinkedIn Jobs
-  - Indeed
-  - Computrabajo
+  ```
+  LinkedIn
+  Indeed
+  Computrabajo
+  Elempleo
+  Torre.ai
+  Magneto365
+  ```
 - Global toggle On / Off
 - Simple interface from the popup
 - Works 100% locally (no servers involved)
@@ -95,9 +100,14 @@ Pensada para personas que quieren **limpiar resultados**, evitar empresas repeti
 - Blacklist personalizada de empresas
 - Filtrado automático de ofertas
 - Soporte para:
-  - LinkedIn Jobs
-  - Indeed
-  - Computrabajo
+  ```
+  LinkedIn
+  Indeed
+  Computrabajo
+  Elempleo
+  Torre.ai
+  Magneto365
+  ```
 - Toggle global **Activado / Desactivado**
 - Interfaz simple desde popup
 - Funciona 100% local (sin servidores)

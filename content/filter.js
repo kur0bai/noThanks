@@ -30,6 +30,27 @@ const SITE_RULES = {
     jobCard: "article.box_offer",
     company: "p.fs16.fc_base",
   },
+
+  torre: {
+    match: () => document.querySelector("div.tdl-job-preview-card"),
+    jobCard: "div.tmd-card.tmd-card--filled.tdl-job-preview-card",
+    company: ".tdl-job-preview-card__entity-excerpt-headline",
+  },
+
+  elempleo: {
+    match: () => document.querySelector("div.result-item"),
+    jobCard: "div.result-item",
+    company: "span.info-company-name",
+  },
+
+  magneto365: {
+    match: () =>
+      document.querySelector(
+        "div.mg_job_card_desktop_magneto-ui-card-jobs_container_zc0d0 ",
+      ),
+    jobCard: "article.mg_job_card_desktop_magneto-ui-card-jobs_zc0d0 ",
+    company: "h3.mg_job_card_desktop_magneto-ui-card-jobs_text_zc0d0 ",
+  },
 };
 
 let activeRules = null;
@@ -68,7 +89,6 @@ function applyFilter(rules, blacklist) {
     if (card.dataset.jobFiltered === "true") return;
     const companyEl = card.querySelector(rules.company);
     if (!companyEl) return;
-
     const companyName = companyEl.innerText || "";
     if (isBlacklisted(companyName, blacklist)) {
       //card.remove();
