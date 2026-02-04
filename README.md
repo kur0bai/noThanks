@@ -5,12 +5,17 @@
 
 - 🇨🇴 [Español](#nothanks-español)
   - [Funcionalidades](#funcionalidades)
+  - [Instalación](#instalación-manual)
   - [Notas de uso](#notas-de-uso-importante)
   - [Privacidad y seguridad](#privacidad-y-seguridad)
   - [Licencia](#licencia)
+
+<br/>
+
 - 🇺🇸 [English](#nothanks-english)
   - [Features](#features)
   - [Usage notes](#usage-notes-important)
+  - [Install](#manual-installation)
   - [Privacy & Security](#privacy--security)
   - [License](#license)
 
@@ -43,6 +48,14 @@ Designed for people who want to clean up their search results, avoid repeated co
 3. It extracts the company name
 4. If the company is on the blacklist → the job offer is hidden
 5. The process runs dynamically whenever new offers are loaded
+
+### Manual installation
+
+1. Clone or download this repository
+2. Open `chrome://extensions`
+3. Enable **Developer mode**
+4. Click **Load unpacked**
+5. Select the project folder
 
 ### Usage notes (Important)
 
@@ -97,6 +110,14 @@ Pensada para personas que quieren **limpiar resultados**, evitar empresas repeti
 3. Extrae el nombre de la empresa
 4. Si la empresa está en la blacklist → la oferta se oculta
 5. El proceso se repite dinámicamente cuando se cargan nuevas ofertas
+
+### Instalación manual
+
+1. Clona o descarga este repositorio
+2. Abre `chrome://extensions`
+3. Activa **Modo desarrollador**
+4. Click en **Cargar descomprimida**
+5. Selecciona la carpeta del proyecto
 
 ### Notas de uso (Importante)
 
