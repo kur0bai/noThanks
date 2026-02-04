@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Job Blacklist</title>
+    <link rel="stylesheet" href="popup.css" />
+</head>
+
+<body>
+    <div class="header">
+    <!-- Logo :) -->
+    <h1><span id="title-no">no</span><span id="title-thanks">Thanks</span></h1>
+
+    <!-- Toggle -->
+    <div class="container-btn">
+        <button id="enabled-toggle" class="btn-toggle">
+        </button>
+        <button id="disabled-toggle" class="btn-toggle">
+        </button>
+    </div>
+
+    </div>
+
+    <form id="add-form">
+        <input class="input" type="text" id="company-input" placeholder="Company Name" autocomplete="off" required />
+        <button class="btn-save" type="submit">⛁ Save</button>
+    </form>
+
+    <div class="blacklist-title">
+        <h3>Blacklist</h3>
+        <ul id="blacklist"></ul>
+    </div>
+   
+
+    <div class="footer">
+        <span id="count">0 companies</span>
+        <button class="btn-apply" id="refresh" disabled>✓ Apply</button>
+    </div>
+
+    <script src="popup.js"></script>
+</body>
+
+</html>
