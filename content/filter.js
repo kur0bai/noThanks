@@ -8,19 +8,31 @@
  * We can add more sites as needed.
  */
 const SITE_RULES = {
-  "linkedin.com": {
+  linkedin_logged: {
+    match: () => document.querySelector("div.job-card-container[data-job-id]"),
     jobCard: "div.job-card-container[data-job-id]",
     company: ".artdeco-entity-lockup__subtitle span",
   },
-  "indeed.com": {
-    jobCard: "div.job_seen_beacon",
-    company: "span.companyName",
+
+  linkedin_public: {
+    match: () => document.querySelector("div.base-search-card"),
+    jobCard: "div.base-search-card",
+    company: ".base-search-card__subtitle a",
   },
-  "computrabajo.com": {
+  indeed: {
+    match: () => document.querySelector("div.job_seen_beacon"),
+    jobCard: "li:has(div.job_seen_beacon)",
+    company: 'span[data-testid="company-name"]',
+  },
+
+  computrabajo: {
+    match: () => document.querySelector("article.box_offer"),
     jobCard: "article.box_offer",
     company: "p.fs16.fc_base",
   },
 };
+
+let activeRules = null;
 
 /**
  * Utilities
@@ -49,22 +61,37 @@ function isBlacklisted(companyName, blacklist) {
  * Filters magic
  */
 function applyFilter(rules, blacklist) {
+  if (!rules) return;
   const cards = document.querySelectorAll(rules.jobCard);
-
   cards.forEach((card) => {
     // avoide re-processing cards
     if (card.dataset.jobFiltered === "true") return;
-
     const companyEl = card.querySelector(rules.company);
     if (!companyEl) return;
 
     const companyName = companyEl.innerText || "";
-
     if (isBlacklisted(companyName, blacklist)) {
-      card.remove();
+      //card.remove();
+      card.style.display = "none";
+      card.style.setProperty("display", "none", "important");
       card.dataset.jobFiltered = "true";
     }
   });
+}
+
+/**
+ * Waiting for rules
+ * @param {*} callback
+ */
+function waitForRules(callback) {
+  const interval = setInterval(() => {
+    const rules = Object.values(SITE_RULES).find((r) => r.match());
+    if (rules) {
+      //console.log("✅ Rules detected:", rules);
+      clearInterval(interval);
+      callback(rules);
+    }
+  }, 500);
 }
 
 /**
@@ -91,32 +118,27 @@ function startObserver(rules) {
  * Just init
  */
 (function init() {
-  const hostname = window.location.hostname;
+  waitForRules((rules) => {
+    activeRules = rules;
 
-  const siteKey = Object.keys(SITE_RULES).find((site) =>
-    hostname.includes(site),
-  );
-
-  if (!siteKey) return;
-
-  const rules = SITE_RULES[siteKey];
-
-  chrome.storage.local.get(
-    ["blacklist", "enabled"],
-    ({ blacklist = [], enabled = true }) => {
-      if (!enabled) return;
-      applyFilter(rules, blacklist);
-      startObserver(rules);
-    },
-  );
+    chrome.storage.local.get(
+      ["blacklist", "enabled"],
+      ({ blacklist = [], enabled = true }) => {
+        if (!enabled) return;
+        applyFilter(activeRules, blacklist);
+        startObserver(activeRules);
+      },
+    );
+  });
 })();
 
+/**
+ * Listen for toggle events
+ */
 chrome.runtime.onMessage.addListener((msg) => {
-  if (msg.type === "TOGGLE") {
-    if (msg.enabled) {
-      chrome.storage.local.get(["blacklist"], ({ blacklist = [] }) => {
-        applyFilter(rules, blacklist);
-      });
-    }
+  if (msg.type === "TOGGLE" && msg.enabled && activeRules) {
+    chrome.storage.local.get(["blacklist"], ({ blacklist = [] }) => {
+      applyFilter(activeRules, blacklist);
+    });
   }
 });
