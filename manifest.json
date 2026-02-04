@@ -13,7 +13,10 @@
         "*://www.computrabajo.com/*",
         "*://ar.computrabajo.com/*",
         "*://mx.computrabajo.com/*",
-        "*://co.computrabajo.com/*"
+        "*://co.computrabajo.com/*",
+        "*://*.torre.ai/*",
+        "*://*.elempleo.com/*",
+        "*://*.magneto365.com/*"
       ],
       "js": ["content/filter.js"]
     }
