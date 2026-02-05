@@ -4,6 +4,7 @@
   "version": "1.0",
   "description": "Filter job offers by company | Filtra ofertas de empleo por empresa",
   "permissions": ["storage", "tabs"],
+  "author": "Jesus Salcedo (kur0bai)",
   "content_scripts": [
     {
       "matches": [
